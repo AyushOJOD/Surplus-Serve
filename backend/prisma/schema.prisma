@@ -1,0 +1,107 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  password    String
+  name        String
+  role        UserRole
+  latitude    Float
+  longitude   Float
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  donations   Donation[]
+  restaurants Restaurant[]  @relation("RestaurantOwner")
+  ngos        NGO[]         @relation("NGOContact")
+}
+
+model Restaurant {
+  id          Int       @id @default(autoincrement())
+  name        String
+  owner       User      @relation("RestaurantOwner", fields: [ownerId], references: [id])
+  ownerId     Int
+  address     String
+  phoneNumber String
+  latitude    Float
+  longitude   Float
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  foodPosts   FoodPost[]
+}
+
+model NGO {
+  id          Int       @id @default(autoincrement())
+  name        String
+  contact     User      @relation("NGOContact", fields: [contactId], references: [id])
+  contactId   Int
+  address     String
+  phoneNumber String
+  latitude    Float
+  longitude   Float
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  foodRequests FoodRequest[]
+}
+
+model FoodPost {
+  id          Int       @id @default(autoincrement())
+  restaurant  Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId Int
+  pictureUrl  String
+  quantity    String
+  description String
+  status      PostStatus
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  requests    FoodRequest[]
+}
+
+model FoodRequest {
+  id          Int       @id @default(autoincrement())
+  ngo         NGO       @relation(fields: [ngoId], references: [id])
+  ngoId       Int
+  foodPost    FoodPost  @relation(fields: [foodPostId], references: [id])
+  foodPostId  Int
+  quantity    String
+  status      RequestStatus
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Donation {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int
+  itemType    String
+  itemName    String
+  quantity    String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum UserRole {
+  RESTAURANT_OWNER
+  NGO
+  NORMAL_USER
+}
+
+enum PostStatus {
+  AVAILABLE
+  CLAIMED
+  DELIVERED
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  COMPLETED
+  DECLINED
+}
