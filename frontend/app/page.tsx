@@ -1,113 +1,134 @@
+"use client";
+import AnimateWrapper from "@/components/animate-in-wrapper";
+import { Origami } from "@/components/origami-component";
+import { RevealText } from "@/components/reveal-text";
+import { motion } from "framer-motion";
 import Image from "next/image";
-
+import Link from "next/link";
+import logo from "../public/logo.png";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="min-h-[200vh]">
+      <div className=" mx-auto max-w-7xl  flex gap-4 flex-col justify-center items-center mt-10">
+        <AnimateWrapper delay={0.1}>
+          <div className="">
+            <div className="w-[200px] ml-auto">
+              <div className="mb-1.5 rounded-full bg-zinc-600">
+                <Link
+                  href="/"
+                  target="_blank"
+                  rel="nofollow"
+                  className="flex origin-top-left items-center rounded-full border border-zinc-900 bg-white p-0.5 text-sm transition-transform hover:-rotate-2"
+                >
+                  <span className="rounded-full bg-rose-600 px-2 py-0.5 font-medium text-white">
+                    HEY!
+                  </span>
+                  <span className="ml-1.5 mr-1 dark:text-black inline-block">
+                    Follow us on twitter
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </AnimateWrapper>
+        <AnimateWrapper delay={0.2}>
+          <div className="flex items-center justify-around">
+            <AnimateWrapper delay={0.3}>
+              <Origami />
+            </AnimateWrapper>
+            <h1 className="text-start text-4xl tracking-tighter leading-[1.15] md:text-6xl font-light md:leading-[1.15]">
+              End hunger, reduce waste. Donate surplus food. Sign up, Surplus
+              Serve
+            </h1>
+          </div>
+        </AnimateWrapper>
+        <AnimateWrapper delay={0.4}>
+          <div className="flex gap-4 justify-center items-center">
+            <RevealText href="/users">Users</RevealText>
+            <RevealText href="/restraunts">Restraunts</RevealText>
+            <RevealText href="/ngos">NGOs</RevealText>
+          </div>
+        </AnimateWrapper>
+      </div>
+      <BrowserComponent />
+    </main>
+  );
+}
+
+function BrowserComponent() {
+  return (
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.75, delay: 0.5 }}
+      className=" h-96 w-[calc(100vw_-_56px)] max-w-[1100px] mx-auto mt-16 overflow-hidden rounded-xl bg-zinc-600 p-0.5"
+    >
+      <div className="flex items-center justify-between px-2 py-1">
+        <div className="flex items-center gap-0.5">
+          <span className="size-2 rounded-full bg-red-400"></span>
+          <span className="size-2 rounded-full bg-yellow-400"></span>
+          <span className="size-2 rounded-full bg-green-400"></span>
+        </div>
+        <span className="rounded bg-zinc-600 px-2 py-0.5 text-xs text-zinc-100">
+          server-surplus.vercel.app
+        </span>
+        <svg
+          stroke="currentColor"
+          fill="none"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          className="text-white"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div className="relative z-0 grid h-full w-full grid-cols-[100px,_1fr] overflow-hidden rounded-t-lg bg-white md:grid-cols-[150px,_1fr]">
+        <div className="h-full border-r border-zinc-300 p-2">
+          <Image
+            src={logo}
+            alt="logo-image"
+            className="size-10 rounded-3xl border"
+          />
+          <div className=" flex flex-col gap-1.5 justify-start items-end pr-4 pt-4 text-xs text-indigo-600">
+            <Link href={"/help"}>Messages</Link>
+            <Link href={"/docs/aim"}>Aim</Link>
+            <Link href={"/docs/faq"}>FAQs</Link>
+          </div>
+        </div>
+        <div className="relative p-2">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="rounded bg-zinc-200 px-1.5 py-1 pr-8 text-xs text-zinc-600">
+              Search...
+            </span>
+            <div className="flex items-center gap-1.5 text-xl">
+              <svg
+                stroke="currentColor"
+                fill="none"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="text-indigo-600"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <Link href={"/dashboard"} className="text-sm dark:text-black ">
+                Dashboard
+              </Link>
+            </div>
+          </div>
+          <div className="h-full rounded-xl border border-dashed border-zinc-500 bg-zinc-100"></div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </motion.div>
   );
 }
