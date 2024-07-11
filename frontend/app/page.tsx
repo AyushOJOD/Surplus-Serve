@@ -11,39 +11,51 @@ export default function Home() {
     <main className="min-h-[200vh]">
       <div className=" mx-auto max-w-7xl  flex gap-4 flex-col justify-center items-center mt-10">
         <AnimateWrapper delay={0.1}>
-          <div className="">
-            <div className="w-[200px] ml-auto">
-              <div className="mb-1.5 rounded-full bg-zinc-600">
-                <Link
-                  href="/"
-                  target="_blank"
-                  rel="nofollow"
-                  className="flex origin-top-left items-center rounded-full border border-zinc-900 bg-white p-0.5 text-sm transition-transform hover:-rotate-2"
-                >
-                  <span className="rounded-full bg-rose-600 px-2 py-0.5 font-medium text-white">
-                    HEY!
-                  </span>
-                  <span className="ml-1.5 mr-1 dark:text-black inline-block">
-                    Follow us on twitter
-                  </span>
-                </Link>
-              </div>
+          {/* follow us on twitter component */}
+          <div className="w-[120px] md:w-[200px] ml-auto">
+            <div className="mb-1.5 rounded-full bg-zinc-600">
+              <Link
+                href="/"
+                target="_blank"
+                rel="nofollow"
+                className="flex origin-top-left items-center rounded-full border border-zinc-900 bg-white p-0.5 text-sm transition-transform hover:-rotate-2"
+              >
+                <span className="rounded-full bg-blue-600 px-2 py-0.5 font-medium text-white">
+                  HEY!
+                </span>
+                <span className="ml-1.5 mr-1 dark:text-black inline-block">
+                  <span className="max-md:hidden">Follow us on</span>
+                  twitter
+                </span>
+              </Link>
             </div>
           </div>
         </AnimateWrapper>
         <AnimateWrapper delay={0.2}>
-          <div className="flex items-center justify-around">
+          <div className="flex max-md:flex-col items-center justify-around">
             <AnimateWrapper delay={0.3}>
               <Origami />
             </AnimateWrapper>
-            <h1 className="text-start text-4xl tracking-tighter leading-[1.15] md:text-6xl font-light md:leading-[1.15]">
+            <h1 className="text-center md:text-start text-4xl tracking-tighter leading-[1.15] md:text-6xl font-light md:leading-[1.15]">
               End hunger, reduce waste. Donate surplus food. Sign up, Surplus
               Serve
             </h1>
           </div>
         </AnimateWrapper>
         <AnimateWrapper delay={0.4}>
-          <div className="flex gap-4 justify-center items-center">
+          <div className="flex gap-4 justify-center items-center max-md:mt-10">
+            <motion.div
+              initial={{ x: 10, rotate: 10 }}
+              animate={{ x: -10, rotate: -40 }}
+              transition={{
+                repeat: Infinity,
+                duration: 1,
+                repeatType: "reverse",
+              }}
+              className="text-4xl max-md:hidden"
+            >
+              👉
+            </motion.div>
             <RevealText href="/users">Users</RevealText>
             <RevealText href="/restraunts">Restraunts</RevealText>
             <RevealText href="/ngos">NGOs</RevealText>
@@ -51,6 +63,10 @@ export default function Home() {
         </AnimateWrapper>
       </div>
       <BrowserComponent />
+      <div className="w-[95%] rounded-full h-0.5 mx-auto my-10 bg-gray-300 dark:bg-gray-600 px-4" />
+      <AnimateWrapper>
+        <div className="text-6xl text-center mt-10">Test</div>
+      </AnimateWrapper>
     </main>
   );
 }
@@ -61,7 +77,7 @@ function BrowserComponent() {
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ ease: "easeInOut", duration: 0.75, delay: 0.5 }}
-      className=" h-96 w-[calc(100vw_-_56px)] max-w-[1100px] mx-auto mt-16 overflow-hidden rounded-xl bg-zinc-600 p-0.5"
+      className=" h-96 w-[calc(100vw_-_56px)] max-w-[1100px] mx-auto mt-10 lg:mt-16 overflow-hidden rounded-xl bg-zinc-600 p-0.5"
     >
       <div className="flex items-center justify-between px-2 py-1">
         <div className="flex items-center gap-0.5">

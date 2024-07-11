@@ -17,18 +17,23 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../public/logo.png";
 import { ModeToggle } from "./theme-switch-button";
+import AnimateWrapper from "./animate-in-wrapper";
 export const Navbar = () => {
   return (
-    <div className="w-full md:max-w-4xl mx-auto p-4 flex justify-end sm:justify-between">
-      <Link href={"/"} className="size-10 max-sm:hidden">
-        <Image
-          src={logo}
-          alt="logo-image"
-          className="h-10 w-10 rounded-full border"
-        />
-      </Link>
-      <NavigationMenuComp />
-    </div>
+    <nav className="w-full md:max-w-4xl mx-auto p-4 flex justify-end sm:justify-between">
+      <AnimateWrapper>
+        <Link href={"/"} className="size-10 max-sm:hidden">
+          <Image
+            src={logo}
+            alt="logo-image"
+            className="h-10 w-10 rounded-full border"
+          />
+        </Link>
+      </AnimateWrapper>
+      <AnimateWrapper dir={-20}>
+        <NavigationMenuComp />
+      </AnimateWrapper>
+    </nav>
   );
 };
 export default Navbar;

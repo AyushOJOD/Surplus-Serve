@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 export const Origami = () => {
   return (
-    <section className="flex h-72 flex-col items-center justify-center gap-12 px-4 py-24 md:flex-row">
+    <section className="flex h-60 md:h-72 flex-col items-center justify-center gap-12 px-4 py-4 md:py-24 md:flex-row">
       <LogoRolodex
         items={[
           <LogoItem key={1} className="bg-orange-300 text-neutral-900">
